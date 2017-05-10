@@ -1,7 +1,7 @@
 {
   "name": "pcc-syntax",
   "main": "./lib/pcc-syntax",
-  "version": "0.3.0",
+  "version": "0.0.1",
   "description": "pcc syntax highlighting for atom",
   "keywords": [],
   "activationCommands": {
