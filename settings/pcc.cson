@@ -1,0 +1,4 @@
+'.source.pcc':
+    'editor':
+        'softWrap': true
+        'increaseIndentPattern': '^\\s*((#chain|#adv).*|((rcb|icb):|(\\?:|!:)|(1:|0:))+)$'

@@ -1,0 +1,157 @@
+#copied from atom's 'language-javascript' and 'language-gfm'
+
+'name': 'PCC syntax'
+'scopeName': 'source.pcc'
+'limitLineLength': false
+'fileTypes': [
+    'pcc'
+]
+'patterns': [
+    {
+        # embed script
+        'begin': '^#script'
+        'beginCaptures':
+            '0':
+                'name': 'support.pcc'
+        'end': '^#end script'
+        'endCaptures':
+            '0':
+                'name': 'support.pcc'
+        'name': 'support.function.pcc'
+        'contentName': 'source.embedded.pcc'
+        'patterns': [
+            {
+                'include': 'source.js'
+            }
+        ]
+    }
+    {
+        'match': '^#include <(.*)>\\s*$'
+        'captures':
+            '1':
+                'name': 'variable.parameter.pcc'
+        'name': 'support.function.pcc'
+    }
+    {
+        # inline expression
+        'begin': '^\\s*#run '
+        'end': '$'
+        'name': 'support.function.pcc'
+        'contentName': 'source.embedded.json'
+        'patterns': [
+            {
+                'include': 'source.js'
+            }
+        ]
+    }
+    {
+        #single line comment
+        'match': '^\\s*//.*$'
+        'name': 'comment.line.double-slash.pcc'
+    }
+    {
+        #multiline comment
+        'begin': '^\\s*/\\*'
+        'beginCaptures':
+            '0':
+                'name': 'comment.block.documentation.pcc'
+        'end': '\\*/\\s*$'
+        'endCaptures':
+            '0':
+                'name': 'comment.block.documentation'
+        'contentName': 'comment.block.documentation'
+    }
+    {
+        #module
+        'match': '^\\s*#module .*$'
+        'name': 'entity.name.section'
+    }
+    {
+        #advancement procedure
+        'match': '^\\s*#adv (\\w+:)?(\\w+)\s?(\\bimpossible\\b|\\btick\\b|\\bmain_loop\\b|\\s)*$'
+        'captures':
+            '0':
+                'name': 'entity.name.type'
+            '1':
+                'name': 'entity.name.function'
+            '2':
+                'name': 'entity.name.function'
+            '3':
+                'name': 'entity.name.tag'
+        'name': 'entity.name.function'
+    }
+    {
+        #advancement annotation
+        'begin': '^\\s*@criteria "\\w+":\s*{'
+        'end': '}'
+        'name': 'support.function.pcc'
+        'contentName': 'source.embedded.json'
+        'patterns': [
+            {
+                'include': 'source.json'
+            }
+        ]
+    }
+    {
+        #chain
+        'match': '^\\s*#chain (~?(-?\\d+)|~) (~?(-?\\d+)|~) (~?(-?\\d+)|~)\\s?([+-][xyz])?\\s?(loop|wrap,[+-][xyz],\\d+)?$'
+        'captures':
+            '1':
+                'name': 'constant.numeric.pcc'
+            '3':
+                'name': 'constant.numeric.pcc'
+            '5':
+                'name': 'constant.numeric.pcc'
+            '7':
+                'name': 'keyword.control.pcc'
+            '8':
+                'name': 'keyword.control.pcc'
+        'name': 'support.function.pcc'
+    }
+    {
+        #annotation
+        'match': '^\\s*@\\w+.*$'
+        'name': 'support.function.pcc'
+    }
+    {
+        #prefix
+        'match': '^\\s*((rcb|icb):|(\\?:|!:)|(1:|0:))*(r:)?'
+        'name': 'support.keyword.pcc'
+        'captures':
+            '2':
+                'name': 'support.class.pcc'
+            '3':
+                'name': 'support.function.pcc'
+            '4':
+                'name': 'support.type.pcc'
+            '5':
+                'name': 'support.constant.pcc'
+    }
+    {
+        # inline expression
+        'begin': '#{'
+        'captures':
+            '0':
+                'name': 'string.interpolated.pcc'
+        'end': '}'
+        'name': 'string.interpolated.pcc'
+        'patterns': [
+            {
+                'begin': '{'
+                'beginCaptures':
+                    '0':
+                        'name': 'meta.brace.curly.js'
+                'end': '}'
+                'endCaptures':
+                    '0':
+                        'name': 'meta.brace.curly.js'
+                'patterns': [
+                    'include': 'source.js'
+                ]
+            }
+            {
+                'include': 'source.js'
+            }
+        ]
+    }
+]

@@ -1,0 +1,26 @@
+{
+  "context-menu": {
+    "atom-text-editor": [
+      {
+        "label": "Toggle pcc-syntax",
+        "command": "pcc-syntax:toggle"
+      }
+    ]
+  },
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "pcc-syntax",
+          "submenu": [
+            {
+              "label": "Toggle",
+              "command": "pcc-syntax:toggle"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
