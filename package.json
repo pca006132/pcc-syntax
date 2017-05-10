@@ -1,5 +1,5 @@
 {
-  "name": "pcc-syntax",
+  "name": "pcc-syntax-atom",
   "main": "./lib/pcc-syntax",
   "version": "0.0.1",
   "description": "pcc syntax highlighting for atom",
